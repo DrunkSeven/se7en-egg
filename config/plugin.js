@@ -6,8 +6,16 @@ module.exports = {
   // static: {
   //   enable: true,
   // }
-  sequelize:{
-    enable:true,
-    package:'egg-sequelize'
-  }
+  cors: {
+    enable: true,
+    package: 'egg-cors',
+  },
+  sequelize: {
+    enable: true,
+    package: 'egg-sequelize',
+  },
+  redis: {
+    enable: true,
+    package: 'egg-redis',
+  },
 };

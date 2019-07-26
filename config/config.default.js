@@ -11,11 +11,6 @@ module.exports = appInfo => {
    * @type {Egg.EggAppConfig}
    **/
   const config = exports = {};
-  const security= {
-    csrf: {
-      headerName: 'x-csrf-token', // 通过 query 传递 CSRF token 的默认字段为 _csrf
-    },
-  };
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1563173034770_263';
 
@@ -26,16 +21,35 @@ module.exports = appInfo => {
     host: '127.0.0.1',
     port: 3306,
     // database: 'se7en',
-    database:'se7en_development',
-    password:"x5"
+    database: 'se7en_development',
+    password: 'x5',
+  };
+  config.cors = {
+    origin: 'http://www.se7en.com',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+    credentials: true,
+  };
+  config.redis = {
+    client: {
+      port: 6379,
+      host: '127.0.0.1',
+      db: 0,
+      password: '',
+    },
   };
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
   };
-
+  exports.httpclient = {
+    httpAgent: {
+      keepAlive: false,
+    },
+  };
+  exports.security = {
+    csrf: false,
+  };
   return {
-    ...security,
     ...config,
     ...userConfig,
   };

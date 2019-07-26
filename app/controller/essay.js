@@ -1,5 +1,5 @@
 'use strict';
-
+const Sequelize = require('sequelize');
 const Controller = require('egg').Controller;
 function toInt(str) {
   if (typeof str === 'number') return str;
@@ -9,9 +9,16 @@ function toInt(str) {
 
 class EssayController extends Controller {
   async index() {
-    const ctx = this.ctx;
-    const query = { limit: toInt(ctx.query.limit), offset: toInt(ctx.query.offset) };
-    ctx.body = await ctx.model.Essay.findAll(query);
+    const { type, pageSize, pageIndex, keyword } = this.ctx.query;
+    const where = {};
+    if (type) {
+      where.type = type;
+    }
+    if (keyword) {
+      where.title = { [Sequelize.Op.like]: `%${keyword}%` };
+    }
+    const query = { where: where, limit: toInt(pageSize), offset: toInt(pageIndex) };
+    this.ctx.body = await this.ctx.model.Essay.findAndCountAll(query);
   }
   async show() {
     const ctx = this.ctx;
