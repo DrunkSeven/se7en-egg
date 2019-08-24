@@ -25,7 +25,7 @@ module.exports = appInfo => {
     password: 'x5',
   };
   config.cors = {
-    origin: 'http://www.se7en.com',
+    origin: '*',
     allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
     credentials: true,
   };

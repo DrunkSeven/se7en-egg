@@ -17,7 +17,7 @@ class EssayController extends Controller {
     if (keyword) {
       where.title = { [Sequelize.Op.like]: `%${keyword}%` };
     }
-    const query = { where: where, limit: toInt(pageSize), offset: toInt(pageIndex) };
+    const query = { where: where, limit: toInt(pageSize), offset: (toInt(pageIndex) - 1) * toInt(pageSize) };
     this.ctx.body = await this.ctx.model.Essay.findAndCountAll(query);
   }
   async show() {

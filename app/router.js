@@ -6,6 +6,7 @@
 module.exports = app => {
   const { router, controller } = app;
   router.get('/token', controller.common.token);
+  router.get('/searchMusic', controller.common.searchMusic);
   router.post('/verificationCode', controller.common.verificationCode);
   router.get('/essay', controller.essay.index);
   router.get('/essay/:id', controller.essay.show);

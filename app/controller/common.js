@@ -1,7 +1,22 @@
 'use strict';
 const svgCaptcha = require('svg-captcha');
+const request = require('request');
 const Controller = require('egg').Controller;
 class CommonController extends Controller {
+  async searchMusic() {
+    let url = "https://c.y.qq.com/soso/fcgi-bin/client_search_cp?aggr=1&cr=1&flag_qc=0&p=1&n=30&w=%E7%AE%80%E5%8D%95%E7%88%B1"
+    let body = await new Promise((resolve, reject) => {
+      request.get(url, (err, response, body) => {
+        if (!err && response.statusCode == 200) {
+          resolve(body)
+        } else {
+          reject(err)
+        }
+      })
+    })
+    const ctx = this.ctx;
+    ctx.body = { data: body };
+  }
   async token() {
     const ctx = this.ctx;
     ctx.body = { data: true };
