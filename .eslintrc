@@ -1,0 +1,7 @@
+{
+  "extends": "eslint-config-egg",
+  "rules": {
+    "eol-last": "off",
+    "object-shorthand": "off",
+  }
+}
