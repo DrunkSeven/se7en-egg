@@ -3,5 +3,8 @@
   "rules": {
     "eol-last": "off",
     "object-shorthand": "off",
+    "arrow-parens": "off",
+    "quotes": "off",
+    "no-unused-vars": "off"
   }
 }
