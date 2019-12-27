@@ -16,16 +16,13 @@ class DrawController extends Controller {
     ctx.socket.join(room);
     nsp.to(room).emit('draw', message);
     if (message.action === 'onmouseup' || message.action === 'prePage' || message.action === 'nextPage') {
-
       await this.app.redis.rpush(room, JSON.stringify(message));
       // readFile('all.json').then(v => {
       //   if (v.toString('UTF-8') === '[') {
       //     appendFile('all.json', JSON.stringify(message) + ']');
       //   } else {
-
       //     appendFile('all.json', ',' + JSON.stringify(message) + ']');
       //   }
-
       // });
     }
   }

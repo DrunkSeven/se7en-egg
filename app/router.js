@@ -11,6 +11,7 @@ module.exports = app => {
   router.get('/essay/:id', controller.essay.show);
   router.get('/essay', controller.essay.create);
   router.get('/message', controller.message.index);
+  router.get('/wxFile', controller.common.wxFile);
   router.post('/message', controller.message.create);
   io.of('/').route('msg', io.controller.message.index);
   io.of('/').route('rtc', io.controller.message.rtcInfo);
